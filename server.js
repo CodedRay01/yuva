@@ -23,7 +23,7 @@ const getTodayFileName = () => {
   return path.join(dataDir, `${today}.xlsx`);
 };
 
-// Create new Excel file if not exists
+// Create a new Excel file if not exists
 const createFileIfNotExists = () => {
   const filePath = getTodayFileName();
   if (!fs.existsSync(filePath)) {
@@ -34,6 +34,24 @@ const createFileIfNotExists = () => {
   }
   return filePath;
 };
+
+// API: Delete the Excel file (GET version for browser access)
+app.get("/delete", (req, res) => {
+  const filePath = getTodayFileName();
+  console.log(`Attempting to delete file at: ${filePath}`);
+
+  try {
+    if (fs.existsSync(filePath)) {
+      fs.unlinkSync(filePath);
+      res.status(200).send("<h3>File deleted successfully.</h3>");
+    } else {
+      res.status(404).send("<h3>File not found.</h3>");
+    }
+  } catch (err) {
+    console.error("Error deleting file:", err);
+    res.status(500).send("<h3>An error occurred while deleting the file.</h3>");
+  }
+});
 
 // API: Check if mobile exists
 app.post("/check-mobile", (req, res) => {
@@ -76,17 +94,6 @@ app.post("/submit", (req, res) => {
 app.get("/download", (req, res) => {
   const filePath = createFileIfNotExists();
   res.download(filePath);
-});
-
-// API: Delete Excel file
-app.delete("/delete", (req, res) => {
-  const filePath = getTodayFileName();
-  if (fs.existsSync(filePath)) {
-    fs.unlinkSync(filePath);
-    res.json({ message: "File deleted successfully" });
-  } else {
-    res.status(404).json({ message: "File not found" });
-  }
 });
 
 // Start server
