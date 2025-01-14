@@ -1,55 +1,245 @@
+/* General Styles */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f9;
+  font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  background-color: #f4f4f9;
+  color: #333;
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  text-align: center;
+  margin: 20px 0;
 }
 
 .container {
-  background: #fff;
+  max-width: 800px;
+  margin: 20px auto;
   padding: 20px;
-  border-radius: 8px;
+  background: #ffffff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 300px;
+  border-radius: 8px;
+}
+
+/* Form Styles */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 label {
   font-weight: bold;
-  display: block;
-  margin-top: 10px;
+  margin-bottom: 5px;
 }
 
-input {
+input[type="text"], input[type="number"], input[type="email"], select, textarea {
   width: 100%;
-  padding: 8px;
-  margin: 5px 0 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #fafafa;
+  transition: 0.3s;
+}
+
+input[type="text"]:focus, input[type="number"]:focus, input[type="email"]:focus, select:focus, textarea:focus {
+  border-color: #007BFF;
+  background-color: #fff;
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
 }
 
 button {
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
+  padding: 10px 15px;
+  font-size: 1rem;
+  font-weight: bold;
   color: #fff;
+  background-color: #007BFF;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 button:hover {
   background-color: #0056b3;
 }
 
-#message {
-  margin-top: 10px;
-  color: red;
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+table th, table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+table th {
+  background-color: #f4f4f9;
   font-weight: bold;
+}
+
+table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  h1, h2, h3 {
+    font-size: 1.5rem;
+  }
+
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  table tr {
+    margin-bottom: 15px;
+  }
+
+  table td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+
+  table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    text-align: left;
+    font-weight: bold;
+  }
+}
+
+/* Header and Footer */
+header {
+  background-color: #007BFF;
+  color: #fff;
+  padding: 20px 0;
   text-align: center;
-  border: 1px solid red;
-  padding: 2px 4px;
+  font-size: 1.5rem;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  margin-top: 20px;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Button Variants */
+button.primary {
+  background-color: #007BFF;
+}
+
+button.success {
+  background-color: #28a745;
+}
+
+button.danger {
+  background-color: #dc3545;
+}
+
+button.warning {
+  background-color: #ffc107;
+}
+
+button.primary:hover {
+  background-color: #0056b3;
+}
+
+button.success:hover {
+  background-color: #218838;
+}
+
+button.danger:hover {
+  background-color: #c82333;
+}
+
+button.warning:hover {
+  background-color: #e0a800;
+}
+
+/* Input Validation */
+input:invalid {
+  border-color: #dc3545;
+}
+
+input:valid {
+  border-color: #28a745;
+}
+
+/* Card Styles */
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.card h3 {
+  margin-top: 0;
+  color: #007BFF;
+}
+
+.card p {
+  margin: 0;
+  color: #555;
+}
+
+/* Loader */
+.loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #007BFF;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+  margin: auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
